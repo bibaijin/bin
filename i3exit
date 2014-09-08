@@ -1,0 +1,25 @@
+#!/bin/sh
+# i3下实现锁屏、注销、挂起、休眠、重启和关机
+lock () {
+    i3lock -i ~/共享/图片/雪拥科大/图书馆.png
+}
+
+case "$1" in
+    lock)
+	lock
+	;;
+    # logout)
+	# i3-msg exit
+	# ;;
+    suspend)
+	lock && echo "mem" | sudo tee /sys/power/state
+	;;
+    # hibernate)
+	# lock && systemctl hibernate
+	# ;;
+    *)
+	echo "用法：$0 {lock|suspend}"
+	exit 2
+esac
+
+exit 0
